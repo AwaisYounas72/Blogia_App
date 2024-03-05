@@ -2,10 +2,10 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { InjectModel } from '@nestjs/mongoose';
 import { Comment } from './schemas/comment.schema';
 import mongoose from 'mongoose';
-import { Role, User } from 'src/auth/schemas/user.schema';
+import { Role, User } from '../auth/schemas/user.schema';
 import { CreateCommentDto } from './dto/create-comment';
 import { UpdateCommentDto } from './dto/update-comment';
-import { Blog } from 'src/blogs/schemas/blog.schema';
+import { Blog } from '../blogs/schemas/blog.schema';
 
 @Injectable()
 export class CommentService {

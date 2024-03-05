@@ -3,7 +3,7 @@ import { ReactionController } from './reaction.controller';
 import { ReactionService } from './reaction.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ReactionSchema } from './schemas/reaction.schema';
-import { BlogSchema } from 'src/blogs/schemas/blog.schema';
+import { BlogSchema } from '../blogs/schemas/blog.schema';
 
 @Module({
   imports:[

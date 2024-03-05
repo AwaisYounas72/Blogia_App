@@ -3,7 +3,7 @@ import { CommentController } from './comment.controller';
 import { CommentService } from './comment.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CommentSchema } from './schemas/comment.schema';
-import { BlogSchema } from 'src/blogs/schemas/blog.schema';
+import { BlogSchema } from '../blogs/schemas/blog.schema';
 
 @Module({
   imports:[

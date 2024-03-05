@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Reaction } from './schemas/reaction.schema';
 import mongoose from 'mongoose';
-import { Blog } from 'src/blogs/schemas/blog.schema';
+import { Blog } from '../blogs/schemas/blog.schema';
 import { CreateReactionDto } from './dto/create-reaction';
-import { User } from 'src/auth/schemas/user.schema';
+import { User } from '../auth/schemas/user.schema';
 
 @Injectable()
 export class ReactionService {

@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { InjectModel } from '@nestjs/mongoose';
 import { Blog } from './schemas/blog.schema';
 import mongoose from 'mongoose';
-import { User } from 'src/auth/schemas/user.schema';
+import { User } from '../auth/schemas/user.schema';
 import { CreateBlogDto } from './dto/create-blog';
 import { UpdateBlogDto } from './dto/update.blog';
 import { UploadApiErrorResponse, UploadApiResponse, v2 } from 'cloudinary';
