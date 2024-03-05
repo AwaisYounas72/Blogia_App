@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
@@ -36,6 +36,7 @@ export class AuthController {
     }
     @Post('/login')
     login(@Body() loginDto: LoginDto): Promise<{ token: string }> {
+      console.log(loginDto)
         return this.authService.login(loginDto)
     }
 

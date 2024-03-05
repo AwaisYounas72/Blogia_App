@@ -9,74 +9,53 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Define the functional component 'Page'
 const Page: FC = () => {
-  const router = useRouter()
-  const {isLoggedin,login} = useAuthStore()
-  // State to hold login form data
+  const router = useRouter();
+  const [isLoggin, setIsLoggin] = useState<boolean>(false);
+  const { login, isLoggedin,token } = useAuthStore();
+  const [fr, setFr] = useState(true);
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
   });
 
   useEffect(() => {
-    let isLoggedin:any = localStorage.getItem('Auth');
-    isLoggedin = JSON.parse(isLoggedin);
-    isLoggedin = isLoggedin?.state?.isLoggedin;
-    if(isLoggedin){
-      router.push('/')
-    }else{
-      router.push('/auth/login')
+    console.log("Inside useEffect");
+    const isLoggedin = JSON.parse(localStorage.getItem('Auth') || '{}')?.state?.isLoggedin;
+    console.log("isLoggedin from localStorage:", isLoggedin);
+    setIsLoggin(!!isLoggedin);
+    if (!isLoggedin) {
+      router.push('/auth/login');
     }
-  }, [])
-  
+  }, [router]);
 
-  // Use the useAuthStore hook to get the state and actions
-
-  // Handler for input change in the login form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  // Handler for form submission
   const handleSubmit = async () => {
-    // Wait for the login function to complete
+    setFr(false);
     try {
-      await Promise.all([login(loginData)]);
-      // Redirect to homepage upon successful login
-      if(isLoggedin){
-        router.push('/');
-        toast.success('Login Successfully', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-          });
-      }
-      else{
-        router.push('/auth/login')
-        toast.error('Login Failed', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-          });
-      }
-    } catch (error: any) {
-      // Handle error here if needed
-      console.error(error.message);
-      // You can show an error message to the user or handle the error in other ways
+       login(loginData);   
+    } catch (error:any) {
+      console.log(error);
+      toast.error('Login Failed', { /* toast configuration */ });
+      router.push('/auth/login');
     }
   };
+  useEffect(()=> {
+    if(!fr){
+      if(isLoggedin){
+        toast.success('Login Successfully', { /* toast configuration */ });
+        router.push('/');
+      }else{
+        setIsLoggin(false);
+        toast.error('Invalid credenils...', { /* toast configuration */ });
+      }
+    }
+    
+  }, [token, isLoggedin])
+  console.log("isLoggin:", isLoggin);
 
   // JSX for the login page
   return (

@@ -48,7 +48,6 @@ console.log(name)
         if (!isPasswordMatched) {
             throw new UnauthorizedException('Invalid email or passoword')
         }
-
         const token = this.jwtService.sign({ id: user._id })
 
         return { token,user };

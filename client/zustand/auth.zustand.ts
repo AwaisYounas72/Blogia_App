@@ -78,12 +78,17 @@ const AuthStore = (set: any): AuthState => ({
             if (!res.ok) {
                 // You can handle the error here, throw an error, or return a specific value
                 const errorMessage = await res.text();
-                throw new Error(`Login failed: ${errorMessage}`);
+                set({
+                    isLoggedin: false,
+                    token: null,
+                    user: null
+                });
+                return;
             }
             // Parse the response as JSON
             const loginToken = await res.json();
             console.log(loginToken);
-
+console.log(loginToken)
             // Update the state with the received token
             set({
                 isLoggedin: true,

@@ -11,15 +11,17 @@ const Nav = () => {
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
-
+  const {signout} = useAuthStore();
   useEffect(() => {
     let Auth: any = localStorage.getItem('Auth');
+    
     Auth = JSON.parse(Auth);
     setisLoggedin(Auth?.state?.isLoggedin)
   }, [token,state])
 
   const handleLogout = () =>{
-    localStorage.clear();
+    localStorage.removeItem('Auth');
+    signout();
     setState((prev)=>!prev)
   }
   return (
