@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
-import { User } from "src/auth/schemas/user.schema";
-import { Category } from "src/category/schemas/category.schema";
-import { Comment } from "src/comment/schemas/comment.schema";
-import { Reaction } from "src/reaction/schemas/reaction.schema";
+import { User } from "../../auth/schemas/user.schema";
+import { Category } from "../../category/schemas/category.schema";
+import { Comment } from "../../comment/schemas/comment.schema";
+import { Reaction } from "../../reaction/schemas/reaction.schema";
 
 
 

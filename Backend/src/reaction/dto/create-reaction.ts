@@ -1,6 +1,6 @@
 import { IsEnum } from "class-validator";
-import { User } from "src/auth/schemas/user.schema";
-import { Blog } from "src/blogs/schemas/blog.schema";
+import { User } from "../../auth/schemas/user.schema";
+import { Blog } from "../../blogs/schemas/blog.schema";
 import { ReactionType } from "../schemas/reaction.schema";
 
  
